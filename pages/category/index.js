@@ -1,3 +1,5 @@
+import { request } from "../../request/index"
+import regeneratorRuntime from "../../lib/runtime/runtime"
 // pages/category/index.js
 Page({
 
@@ -5,14 +7,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    leftBarList:[],
+    rightBrandList:[],
+    currentIndex:0,
+    scrollTop:0
   },
+
+  Cates:[],
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    const cates = wx.getStorageSync("cates");
+    if(!cates) {
+      this.getCateList();
+    } else {
+      if(Date.now()-cates.time>1000*60*5) {
+        this.getCateList();
+      }else {
+        this.Cates = cates.data
+        let leftBarList = this.Cates.map(v=>v.cat_name)
+        let rightContent = this.Cates[0].children;
+        this.setData({
+          leftBarList: leftBarList,
+          rightBrandList:rightContent
+        })
+      }
+    }
   },
 
   /**
@@ -62,5 +84,26 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  async getCateList(){
+    const result = await request("/categories");
+    this.Cates = result.data.message
+    wx.setStorageSync("cates", {time:Date.now(),data:this.Cates});
+    let rightContent = this.Cates[0].children;
+    this.setData({
+      leftBarList:this.Cates.map(v=>v.cat_name),
+      rightBrandList:rightContent
+    })
+  },
+  
+  handleItemTap(e) {
+    const {index} = e.currentTarget.dataset;
+    let rightContent = this.Cates[index].children;
+    this.setData({
+      currentIndex:index,
+      rightBrandList:rightContent,
+      scrollTop:0
+    })
   }
 })

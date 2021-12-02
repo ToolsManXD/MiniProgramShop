@@ -41,7 +41,7 @@ Page({
 
   },
   getSwiperList(){
-    request({ url:"https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata"})
+    request("/home/swiperdata")
     .then(result=>{
       this.setData({
         swiperList:result.data.message
@@ -49,7 +49,7 @@ Page({
     })
   },
   getCategoryList(){
-    request({ url:"https://api-hmugo-web.itheima.net/api/public/v1/home/catitems"})
+    request("/home/catitems")
     .then(result=>{
       this.setData({
         categoryList:result.data.message
@@ -57,7 +57,7 @@ Page({
     })
   },
   getFloorList(){
-    request({ url:"https://api-hmugo-web.itheima.net/api/public/v1/home/floordata"})
+    request("/home/floordata")
     .then(result=>{
       this.setData({
         floorList:result.data.message
