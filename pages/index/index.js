@@ -41,7 +41,7 @@ Page({
 
   },
   getSwiperList(){
-    request("/home/swiperdata")
+    request({url:"/home/swiperdata"})
     .then(result=>{
       this.setData({
         swiperList:result.data.message
@@ -49,7 +49,7 @@ Page({
     })
   },
   getCategoryList(){
-    request("/home/catitems")
+    request({url:"/home/catitems"})
     .then(result=>{
       this.setData({
         categoryList:result.data.message
@@ -57,7 +57,7 @@ Page({
     })
   },
   getFloorList(){
-    request("/home/floordata")
+    request({url:"/home/floordata"})
     .then(result=>{
       this.setData({
         floorList:result.data.message

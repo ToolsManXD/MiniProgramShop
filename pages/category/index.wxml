@@ -22,11 +22,12 @@
                     <text class="line">/</text>
                 </view>
                 <view class="good_list">
-                    <navigator class="" url="" open-type="navigate"
+                    <navigator class="" open-type="navigate"
                     wx:for="{{item1.children}}"
                     wx:key="cat_id"
                     wx:for-item="item2"
                     wx:for-index="index2"
+                    url="../goods_list/index?cid={{item2.cat_id}}" 
                     >
                         <image src="{{item2.cat_icon}}" mode="widthFix"></image>
                         <view class="goods_name">{{item2.cat_name}}</view>

@@ -87,7 +87,7 @@ Page({
   },
 
   async getCateList(){
-    const result = await request("/categories");
+    const result = await request({url:"/categories"});
     this.Cates = result.data.message
     wx.setStorageSync("cates", {time:Date.now(),data:this.Cates});
     let rightContent = this.Cates[0].children;

@@ -1,2 +1,24 @@
-<!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<searchInput></searchInput>
+<tabs tabs="{{tabs}}" bindselectChange="selectChange">
+    <block wx:if="{{tabs[0].isActive}}">
+        <view class="first_tab">
+
+            <navigator class="goods_item"
+            wx:for="{{goodsList}}"
+            wx:key="goods_id">
+
+                <view class="goods_img">
+                    <image mode="widthFix" src="{{item.goods_small_logo?item.goods_small_logo:'https://ww1.sinaimg.cn/large/007rAy9hgy1g24by9t530j30i20i2glm.jpg'}}"></image>
+                </view>
+
+                <view class="goods_info">
+                    <view class="goods_info_title">{{item.goods_name}}</view>
+                    <view class="goods_info_price">￥{{item.goods_price}}</view>
+                </view>
+                
+
+            </navigator>
+
+        </view>
+    </block>
+</tabs>
