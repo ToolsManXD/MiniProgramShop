@@ -1,3 +1,4 @@
+@import "./styles/icon.wxss";
 page,
 view,
 text,
