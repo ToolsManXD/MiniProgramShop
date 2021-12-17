@@ -62,5 +62,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  handleGetUserInfo(e) {
+    const {userInfo} = e.detail;
+    wx.setStorageSync("userInfo", userInfo);
+      
   }
 })

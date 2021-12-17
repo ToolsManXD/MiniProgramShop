@@ -1,0 +1,109 @@
+page{
+    padding-bottom: 90rpx;
+}
+.get_address{
+
+}
+
+.info_row{
+    display: flex;
+    padding: 20rpx;
+    font-size: 30rpx;
+    .user_info{
+        flex: 5;
+    }
+    .user_phone{
+        flex: 3;
+    }
+}
+
+.cart_content{
+    .cart_title{
+        padding: 20rpx;
+        font-size: 36rpx;
+        color: #e22d2d;
+        border-top: 1rpx solid currentColor;
+        border-bottom: 1rpx solid currentColor;
+    }
+    .cart_main{
+        .empty_cart{
+            transform: translate(50%,50%);
+            width: 50%;
+            height: 50%;
+        }
+        .cart_item{
+            padding: 10rpx;
+            border-bottom: 1rpx solid #ccc;
+            display: flex;
+            .img_box{
+                flex: 2;
+                image{
+                    width: 80%;
+                }
+            }
+            .cart_info{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                flex: 4;
+                .goods_name{
+                    display: -webkit-box;
+                    overflow: hidden;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                }
+                .goods_price_wrap{
+                    display: flex;
+                    justify-content: space-between;
+                    .goods_price{
+                        font-size: 34rpx;
+                        color: #e22d2d;
+                    }
+                    .cart_num_tool{
+                        display: flex;
+                        .goods_num{
+                            width: 55rpx;
+                            height: 55rpx;
+                            display:flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer_tool {
+    border-top: 1px solid #ccc;
+    position: fixed;
+    bottom: 0;
+    left: 0%;
+    width: 100%;
+    height: 90rpx;
+    background-color: #fff;
+    display: flex;
+    .total_price_wrap{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 4;
+        .total_price{
+            .total_price_text{
+                color: #e22d2d;
+                font-size: 32rpx;
+            }
+        }
+    }
+    .order_pay_wrap{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32rpx;
+        background-color: #e22d2d;
+        color: #fff;
+        font-weight: 600;
+        flex: 3;
+    }
+}

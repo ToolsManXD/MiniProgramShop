@@ -11,6 +11,8 @@ export const request = (params) => {
         wx.request({
             url:baseUrl+params.url,
             data:params.data,
+            method:params.method,
+            header:params.header,
             success:(result)=>{
                 resolve(result)
             },

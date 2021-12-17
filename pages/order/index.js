@@ -1,3 +1,6 @@
+import { request } from "../../request/index"
+import regeneratorRuntime from "../../lib/runtime/runtime"
+
 // pages/order/index.js
 Page({
 
@@ -5,7 +8,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    orders:[],
+    tabs:[
+      {
+        id:0,
+        name:"全部",
+        isActive:true
+      },{
+        id:1,
+        name:"待付款",
+        isActive:false
+      },{
+        id:2,
+        name:"代发货",
+        isActive:false
+      },{
+        id:3,
+        name:"退款/退货",
+        isActive:false
+      },
+    ],
+    header:{}
   },
 
   /**
@@ -25,8 +48,21 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function (options) {
+    const token = wx.getStorageSync("token");
+    if(!token) {
+      wx.navigateTo({
+        url: '/pages/auth/index',
+      });
+      return;
+    }
+    const header = { Authorization: token };
+    this.setData({header:header})
+    let pages =  getCurrentPages();
+    let currentPages = pages[pages.length-1];
+    const {type} = currentPages.options;
+    this.changeTitleIndex(type-1)
+    this.getOrders(type);
   },
 
   /**
@@ -62,5 +98,27 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  
+  changeTitleIndex(index) {
+    let tabs = this.data.tabs;
+    tabs.forEach((v,i)=>i===index?v.isActive=true:v.isActive=false);
+    this.setData({
+      tabs
+    })
+  },
+
+  selectChange(e) {
+    const index = e.detail;
+    this.changeTitleIndex(index);
+    this.getOrders(index+1,)
+  },
+
+  async getOrders(type) {
+    let header = this.data.header
+    const res = await request({url:"/my/orders/all",data:{type},header:header});
+    this.setData({
+      orders:res.data.message.orders
+    })
   }
 })
